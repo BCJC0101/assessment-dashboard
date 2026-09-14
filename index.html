@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assessment Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment@1.0.1/dist/chartjs-adapter-moment.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="dashboard-header">
+            <h1>Assessment Dashboard</h1>
+            <p class="subtitle">4-Year Qualitative Data Analysis</p>
+        </header>
+
+        <!-- Filter Section -->
+        <section class="filters-section">
+            <div class="filters-container">
+                <div class="filter-group">
+                    <label for="year-filter">Academic Year:</label>
+                    <select id="year-filter">
+                        <option value="">All Years</option>
+                        <option value="2020-2021">2020-2021</option>
+                        <option value="2021-2022">2021-2022</option>
+                        <option value="2022-2023">2022-2023</option>
+                        <option value="2023-2024">2023-2024</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="program-filter">Program:</label>
+                    <select id="program-filter">
+                        <option value="">All Programs</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="department-filter">Department:</label>
+                    <select id="department-filter">
+                        <option value="">All Departments</option>
+                    </select>
+                </div>
+
+                <button id="reset-filters" class="btn-reset">Reset Filters</button>
+                <button id="export-btn" class="btn-export">Export Report</button>
+            </div>
+        </section>
+
+        <!-- Key Metrics Section -->
+        <section class="metrics-section">
+            <div class="metric-card">
+                <div class="metric-header">
+                    <h3>Average Enrollment</h3>
+                </div>
+                <div class="metric-value" id="avg-enrollment">0</div>
+                <div class="metric-trend" id="enrollment-trend"></div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-header">
+                    <h3>Average Retention Rate</h3>
+                </div>
+                <div class="metric-value" id="avg-retention">0%</div>
+                <div class="metric-trend" id="retention-trend"></div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-header">
+                    <h3>Average Graduation Rate</h3>
+                </div>
+                <div class="metric-value" id="avg-graduation">0%</div>
+                <div class="metric-trend" id="graduation-trend"></div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-header">
+                    <h3>Avg. Satisfaction Score</h3>
+                </div>
+                <div class="metric-value" id="avg-satisfaction">0/10</div>
+                <div class="metric-trend" id="satisfaction-trend"></div>
+            </div>
+        </section>
+
+        <!-- Charts Section -->
+        <section class="charts-section">
+            <div class="chart-container full-width">
+                <div class="chart-header">
+                    <h2>Enrollment Trend (4-Year Overview)</h2>
+                </div>
+                <canvas id="enrollmentChart"></canvas>
+            </div>
+
+            <div class="chart-container">
+                <div class="chart-header">
+                    <h2>Retention vs Graduation Rates</h2>
+                </div>
+                <canvas id="retentionGraduationChart"></canvas>
+            </div>
+
+            <div class="chart-container">
+                <div class="chart-header">
+                    <h2>Satisfaction Survey Scores</h2>
+                </div>
+                <canvas id="satisfactionChart"></canvas>
+            </div>
+
+            <div class="chart-container">
+                <div class="chart-header">
+                    <h2>Program Comparison</h2>
+                </div>
+                <canvas id="programComparisonChart"></canvas>
+            </div>
+        </section>
+
+        <!-- Data Table Section -->
+        <section class="table-section">
+            <div class="table-header">
+                <h2>Detailed Data View</h2>
+                <div class="table-controls">
+                    <input type="text" id="table-search" placeholder="Search data..." class="search-input">
+                </div>
+            </div>
+            <div class="table-wrapper">
+                <table id="data-table" class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Academic Year</th>
+                            <th>Program</th>
+                            <th>Department</th>
+                            <th>Enrollment</th>
+                            <th>Retention Rate</th>
+                            <th>Graduation Rate</th>
+                            <th>Satisfaction Score</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body">
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="dashboard-footer">
+            <p>Data compiled from qualitative recordings and institutional records (2020-2024)</p>
+        </footer>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+</html>
